@@ -79,6 +79,12 @@ case "$response" in
     [yY][eE][sS]|[yY]) 
 cd $HOME/simple-taiko-node && docker compose down -v
 rm -rf $HOME/nwaku-compose
+        ;;
+    *)
+	echo Canceled
+	break
+        ;;
+esac
 break
 ;;
 
