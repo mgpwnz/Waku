@@ -77,7 +77,7 @@ fi
 read -r -p "Wipe all DATA? [y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY]) 
-cd $HOME/simple-taiko-node && docker compose down -v
+cd $HOME/nwaku-compose && docker compose down -v
 rm -rf $HOME/nwaku-compose
         ;;
     *)
