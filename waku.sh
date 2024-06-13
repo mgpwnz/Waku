@@ -40,7 +40,7 @@ if [ ! $EPK ]; then
 	fi
 if [ ! $PASS ]; then
 		read -p "Enter password : " PASS
-		echo 'export WS='${PASS} >> $HOME/.bash_profile
+		echo 'export PASS='${PASS} >> $HOME/.bash_profile
 	fi
 sed -i -e "s%ETH_CLIENT_ADDRESS=.*%ETH_CLIENT_ADDRESS=${RPC}%g" $HOME/nwaku-compose/.env
 sed -i -e "s%ETH_TESTNET_KEY=.*%ETH_TESTNET_KEY=${EPK}%g" $HOME/nwaku-compose/.env
