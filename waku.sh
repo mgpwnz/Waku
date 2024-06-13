@@ -36,7 +36,7 @@ if [ ! $RPC ]; then
 	fi
 if [ ! $EPK ]; then
 		read -p "Enter EVM private key : " EPK
-		echo 'export WS='${EPK} >> $HOME/.bash_profile
+		echo 'export EPK='${EPK} >> $HOME/.bash_profile
 	fi
 if [ ! $PASS ]; then
 		read -p "Enter password : " PASS
@@ -60,6 +60,18 @@ break
 cd $HOME/nwaku-compose/
 git pull
 rm .env && cp .env.example .env
+if [ ! $RPC ]; then
+		read -p "Enter RPC : " RPC
+		echo 'export HTTPS='${RPC} >> $HOME/.bash_profile
+	fi
+if [ ! $EPK ]; then
+		read -p "Enter EVM private key : " EPK
+		echo 'export EPK='${EPK} >> $HOME/.bash_profile
+	fi
+if [ ! $PASS ]; then
+		read -p "Enter password : " PASS
+		echo 'export PASS='${PASS} >> $HOME/.bash_profile
+	fi
 sed -i -e "s%ETH_CLIENT_ADDRESS=.*%ETH_CLIENT_ADDRESS=${RPC}%g" $HOME/nwaku-compose/.env
 sed -i -e "s%ETH_TESTNET_KEY=.*%ETH_TESTNET_KEY=${EPK}%g" $HOME/nwaku-compose/.env
 sed -i -e "s%RLN_RELAY_CRED_PASSWORD=.*%RLN_RELAY_CRED_PASSWORD=${PASS}%g" $HOME/nwaku-compose/.env
