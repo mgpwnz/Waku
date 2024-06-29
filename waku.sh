@@ -32,7 +32,7 @@ if [ -f "$bash_profile" ]; then
 fi
 if [ ! $RPC ]; then
 		read -p "Enter RPC : " RPC
-		echo 'export HTTPS='${RPC} >> $HOME/.bash_profile
+		echo 'export RPC='${RPC} >> $HOME/.bash_profile
 	fi
 if [ ! $EPK ]; then
 		read -p "Enter EVM private key : " EPK
