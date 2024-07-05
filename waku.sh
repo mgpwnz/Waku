@@ -66,9 +66,12 @@ if [ ! -f $HOME/backup_nwaku/keystore.json ]; then
   mkdir -p $HOME/backup_nwaku
   cp $HOME/nwaku-compose/keystore/keystore.json $HOME/backup_nwaku/keystore.json
 fi
-rm -rf $HOME/nwaku-compose/keystore/
+git stash push --include-untracked
+git pull https://github.com/waku-org/nwaku-compose.git
+rm -r keystore rln_tree
+git pull origin master
 rm .env && cp .env.example .env
-git pull
+
 if [ ! $RPC ]; then
 		read -p "Enter RPC : " RPC
 		echo 'export RPC='${RPC} >> $HOME/.bash_profile
