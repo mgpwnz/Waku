@@ -85,6 +85,7 @@ sed -i -e "s%ETH_TESTNET_KEY=.*%ETH_TESTNET_KEY=${EPK}%g" $HOME/nwaku-compose/.e
 sed -i -e "s%RLN_RELAY_CRED_PASSWORD=.*%RLN_RELAY_CRED_PASSWORD=${PASS}%g" $HOME/nwaku-compose/.env
 sed -i 's/0\.0\.0\.0:3000:3000/0.0.0.0:3003:3000/g' $HOME/nwaku-compose/docker-compose.yml
 sleep 2
+bash $HOME/nwaku-compose/register_rln.sh
 docker compose restart
 break
 ;;
