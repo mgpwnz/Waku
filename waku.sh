@@ -43,7 +43,7 @@ if [ ! $PASS ]; then
 		echo 'export PASS='${PASS} >> $HOME/.bash_profile
 	fi
  . $HOME/.bash_profile
-sed -i -e "s%ETH_CLIENT_ADDRESS=.*%ETH_CLIENT_ADDRESS=${RPC}%g" $HOME/nwaku-compose/.env
+sed -i -e "s%RLN_RELAY_ETH_CLIENT_ADDRESS=.*%RLN_RELAY_ETH_CLIENT_ADDRESS=${RPC}%g" $HOME/nwaku-compose/.env
 sed -i -e "s%ETH_TESTNET_KEY=.*%ETH_TESTNET_KEY=${EPK}%g" $HOME/nwaku-compose/.env
 sed -i -e "s%RLN_RELAY_CRED_PASSWORD=.*%RLN_RELAY_CRED_PASSWORD=${PASS}%g" $HOME/nwaku-compose/.env
 sed -i 's/0\.0\.0\.0:3000:3000/0.0.0.0:3003:3000/g' $HOME/nwaku-compose/docker-compose.yml
@@ -80,7 +80,7 @@ if [ ! $PASS ]; then
 		echo 'export PASS='${PASS} >> $HOME/.bash_profile
 	fi
 . $HOME/.bash_profile
-sed -i -e "s%ETH_CLIENT_ADDRESS=.*%ETH_CLIENT_ADDRESS=${RPC}%g" $HOME/nwaku-compose/.env
+sed -i -e "s%RLN_RELAY_ETH_CLIENT_ADDRESS=.*%RLN_RELAY_ETH_CLIENT_ADDRESS=${RPC}%g" $HOME/nwaku-compose/.env
 sed -i -e "s%ETH_TESTNET_KEY=.*%ETH_TESTNET_KEY=${EPK}%g" $HOME/nwaku-compose/.env
 sed -i -e "s%RLN_RELAY_CRED_PASSWORD=.*%RLN_RELAY_CRED_PASSWORD=${PASS}%g" $HOME/nwaku-compose/.env
 sed -i 's/0\.0\.0\.0:3000:3000/0.0.0.0:3003:3000/g' $HOME/nwaku-compose/docker-compose.yml
