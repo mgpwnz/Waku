@@ -65,7 +65,9 @@ if [ -f $HOME/nwaku-compose/keystone/keystore.json ]; then
 fi
 #update
 cd $HOME/nwaku-compose/
+git stash
 git pull
+git stash apply
 rm .env && cp .env.example .env
 if [ ! $RPC ]; then
 		read -p "Enter RPC : " RPC
