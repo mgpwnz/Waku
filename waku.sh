@@ -61,7 +61,7 @@ break
 #backup
 if [ ! -f $HOME/backup_nwaku/keystore.json ]; then
   mkdir -p $HOME/backup_nwaku
-  cp $HOME/nwaku-compose/keystone/keystore.json $HOME/backup_nwaku/keystore.json
+  cp $HOME/nwaku-compose/keystore/keystore.json $HOME/backup_nwaku/keystore.json
 fi
 #update
 cd $HOME/nwaku-compose/
