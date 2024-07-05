@@ -59,9 +59,9 @@ break
 
 "Update Node")
 #backup
-if [-f $HOME/backup_nwaku/keystore.json ]; then
-mkdir $HOME/backup_nwaku
-cp $HOME/nwaku-compose/keystone/keystore.json $HOME/backup_nwaku/keystore.json
+if [ -f $HOME/nwaku-compose/keystone/keystore.json ]; then
+  mkdir -p $HOME/backup_nwaku
+  cp $HOME/nwaku-compose/keystone/keystore.json $HOME/backup_nwaku/keystore.json
 fi
 #update
 cd $HOME/nwaku-compose/
