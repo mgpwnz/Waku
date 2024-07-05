@@ -65,10 +65,8 @@ if [ ! -f $HOME/backup_nwaku/keystore.json ]; then
 fi
 #update
 cd $HOME/nwaku-compose/
-git stash
-git pull
-git stash apply
 rm .env && cp .env.example .env
+git pull
 if [ ! $RPC ]; then
 		read -p "Enter RPC : " RPC
 		echo 'export RPC='${RPC} >> $HOME/.bash_profile
