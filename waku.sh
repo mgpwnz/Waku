@@ -47,6 +47,7 @@ sed -i -e "s%RLN_RELAY_ETH_CLIENT_ADDRESS=.*%RLN_RELAY_ETH_CLIENT_ADDRESS=${RPC}
 sed -i -e "s%ETH_TESTNET_KEY=.*%ETH_TESTNET_KEY=${EPK}%g" $HOME/nwaku-compose/.env
 sed -i -e "s%RLN_RELAY_CRED_PASSWORD=.*%RLN_RELAY_CRED_PASSWORD=${PASS}%g" $HOME/nwaku-compose/.env
 sed -i 's/0\.0\.0\.0:3000:3000/0.0.0.0:3003:3000/g' $HOME/nwaku-compose/docker-compose.yml
+sed -i 's/8000:8000/8004:8000/g' $HOME/nwaku-compose/docker-compose.yml
 bash $HOME/nwaku-compose/register_rln.sh
 break
 ;;
@@ -58,13 +59,14 @@ break
 ;;
 
 "Update Node")
-#backup
+#update
+cd $HOME/nwaku-compose/
+docker compose down
 if [ ! -f $HOME/backup_nwaku/keystore.json ]; then
   mkdir -p $HOME/backup_nwaku
   cp $HOME/nwaku-compose/keystore/keystore.json $HOME/backup_nwaku/keystore.json
 fi
-#update
-cd $HOME/nwaku-compose/
+rm -rf $HOME/nwaku-compose/keystore/
 rm .env && cp .env.example .env
 git pull
 if [ ! $RPC ]; then
@@ -84,8 +86,10 @@ sed -i -e "s%RLN_RELAY_ETH_CLIENT_ADDRESS=.*%RLN_RELAY_ETH_CLIENT_ADDRESS=${RPC}
 sed -i -e "s%ETH_TESTNET_KEY=.*%ETH_TESTNET_KEY=${EPK}%g" $HOME/nwaku-compose/.env
 sed -i -e "s%RLN_RELAY_CRED_PASSWORD=.*%RLN_RELAY_CRED_PASSWORD=${PASS}%g" $HOME/nwaku-compose/.env
 sed -i 's/0\.0\.0\.0:3000:3000/0.0.0.0:3003:3000/g' $HOME/nwaku-compose/docker-compose.yml
+sed -i 's/8000:8000/8004:8000/g' $HOME/nwaku-compose/docker-compose.yml
+bash $HOME/nwaku-compose/register_rln.sh
 sleep 2
-docker compose restart
+docker compose up -d
 break
 ;;
 "Logs")
