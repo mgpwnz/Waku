@@ -58,6 +58,12 @@ break
 ;;
 
 "Update Node")
+#backup
+if [-f $HOME/backup_nwaku ]; then
+mkdir $HOME/backup_nwaku
+cp $HOME/nwaku-compose/keystone/keystore.json $HOME/backup_nwaku/keystore.json
+fi
+#update
 cd $HOME/nwaku-compose/
 git pull
 rm .env && cp .env.example .env
