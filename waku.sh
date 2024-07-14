@@ -66,7 +66,7 @@ if [ ! -f $HOME/backup_nwaku/keystore.json ]; then
   mkdir -p $HOME/backup_nwaku
   cp $HOME/nwaku-compose/keystore/keystore.json $HOME/backup_nwaku/keystore.json
 fi
-git pull https://github.com/waku-org/nwaku-compose.git
+#git pull https://github.com/waku-org/nwaku-compose.git
 git pull origin master
 rm .env && cp .env.example .env
 
