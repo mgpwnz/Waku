@@ -5,8 +5,8 @@ do
 # Menu
 
 PS3='Select an action: '
-#options=("Docker" "Download the components" "Create the configuration" "Run Node" "Update Node" "Logs" "Uninstall" "Exit")
-options=("Docker" "Download the components" "Create the configuration" "Run Node" "Logs" "Uninstall" "Exit")
+options=("Docker" "Download the components" "Create the configuration" "Run Node" "Update Node" "Logs" "Uninstall" "Exit")
+#options=("Docker" "Download the components" "Create the configuration" "Run Node" "Logs" "Uninstall" "Exit")
 select opt in "${options[@]}"
                do
                    case $opt in                          
