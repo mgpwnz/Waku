@@ -67,7 +67,9 @@ if [ ! -f $HOME/backup_nwaku/keystore.json ]; then
   cp $HOME/nwaku-compose/keystore/keystore.json $HOME/backup_nwaku/keystore.json
 fi
 #git pull https://github.com/waku-org/nwaku-compose.git
-git pull origin master
+git stash
+git pull
+git stash apply
 rm .env && cp .env.example .env
 
 if [ ! $RPC ]; then
