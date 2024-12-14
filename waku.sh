@@ -71,7 +71,7 @@ git stash
 git pull
 git stash apply
 #git pull origin master
-bash $HOME/nwaku-compose/set_storage_retention.sh
+#bash $HOME/nwaku-compose/set_storage_retention.sh
 rm .env && cp .env.example .env
 
 if [ ! $RPC ]; then
