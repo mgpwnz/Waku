@@ -5,7 +5,7 @@ do
 # Menu
 
 PS3='Select an action: '
-options=("Docker" "Download the components" "Create the configuration" "Run Node" "Update Node" "Logs" "Uninstall" "Exit")
+options=("Docker" "Download the components" "Create the configuration" "Check health" "Run Node" "Update Node" "Logs" "Uninstall" "Exit")
 #options=("Docker" "Download the components" "Create the configuration" "Run Node" "Update Node" "Upgrade Node" "Logs" "Uninstall" "Exit")
 select opt in "${options[@]}"
                do
@@ -97,7 +97,10 @@ sleep 2
 docker compose up -d
 break
 ;;
-
+"Check health")
+bash $HOME/nwaku-compose/chkhealth.sh
+break
+;;
 "Upgrade Node")
 #upgrade
 cd $HOME/nwaku-compose/
