@@ -71,7 +71,10 @@ if [ ! -f $HOME/backup_nwaku/keystore.json ]; then
   mkdir -p $HOME/backup_nwaku
   cp $HOME/nwaku-compose/keystore/keystore.json $HOME/backup_nwaku/keystore.json
 fi
-git pull origin master
+git fetch
+git stash
+git merge origin/master
+git stash pop
 #bash $HOME/nwaku-compose/set_storage_retention.sh
 rm .env && cp .env.example .env
 
@@ -115,7 +118,10 @@ if [ ! -f $HOME/backup_nwaku/keystore.json ]; then
   cp $HOME/nwaku-compose/keystore/keystore.json $HOME/backup_nwaku/keystore.json
 fi
 rm -r keystore rln_tree
-git pull origin master
+git fetch
+git stash
+git merge origin/master
+git stash pop
 rm .env && cp .env.example .env
 
 if [ ! $RPC ]; then
