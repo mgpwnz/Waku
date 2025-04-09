@@ -114,8 +114,6 @@ if [ ! -f $HOME/backup_nwaku/keystore.json ]; then
   mkdir -p $HOME/backup_nwaku
   cp $HOME/nwaku-compose/keystore/keystore.json $HOME/backup_nwaku/keystore.json
 fi
-#git stash push --include-untracked
-#git pull https://github.com/waku-org/nwaku-compose.git
 rm -r keystore rln_tree
 git pull origin master
 rm .env && cp .env.example .env
