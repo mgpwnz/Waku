@@ -48,7 +48,7 @@ sed -i -e "s%RLN_RELAY_ETH_CLIENT_ADDRESS=.*%RLN_RELAY_ETH_CLIENT_ADDRESS=${RPC}
 sed -i -e "s%ETH_TESTNET_KEY=.*%ETH_TESTNET_KEY=${EPK}%g" $HOME/nwaku-compose/.env
 sed -i -e "s%RLN_RELAY_CRED_PASSWORD=.*%RLN_RELAY_CRED_PASSWORD=${PASS}%g" $HOME/nwaku-compose/.env
 sed -i -e "s%STORAGE_SIZE=.*%STORAGE_SIZE=50GB%g" $HOME/nwaku-compose/.env
-sed -i -e "s%NWAKU_IMAGE=.*%NWAKU_IMAGE=wakuorg/nwaku:v0.35.1%g" $HOME/nwaku-compose/.env
+#sed -i -e "s%NWAKU_IMAGE=.*%NWAKU_IMAGE=wakuorg/nwaku:v0.35.1%g" $HOME/nwaku-compose/.env
 grep -q '^POSTGRES_SHM=' "$HOME/nwaku-compose/.env" || echo 'POSTGRES_SHM=4g' >> "$HOME/nwaku-compose/.env"
 sed -i 's/0\.0\.0\.0:3000:3000/0.0.0.0:3003:3000/g' $HOME/nwaku-compose/docker-compose.yml
 sed -i 's/8000:8000/8004:8000/g' $HOME/nwaku-compose/docker-compose.yml
@@ -98,7 +98,7 @@ sed -i -e "s%STORAGE_SIZE=.*%STORAGE_SIZE=50GB%g" $HOME/nwaku-compose/.env
 grep -q '^POSTGRES_SHM=' "$HOME/nwaku-compose/.env" || echo 'POSTGRES_SHM=4g' >> "$HOME/nwaku-compose/.env"
 sed -i 's/0\.0\.0\.0:3000:3000/0.0.0.0:3003:3000/g' $HOME/nwaku-compose/docker-compose.yml
 sed -i 's/8000:8000/8004:8000/g' $HOME/nwaku-compose/docker-compose.yml
-sed -i -e "s%NWAKU_IMAGE=.*%NWAKU_IMAGE=wakuorg/nwaku:v0.35.1%g" $HOME/nwaku-compose/.env
+#sed -i -e "s%NWAKU_IMAGE=.*%NWAKU_IMAGE=wakuorg/nwaku:v0.35.1%g" $HOME/nwaku-compose/.env
 sed -i 's/80:80/81:80/g' $HOME/nwaku-compose/docker-compose.yml
 sed -i 's/127.0.0.1:8003:8003/127.0.0.1:8005:8003/g' $HOME/nwaku-compose/docker-compose.yml
 sleep 2
@@ -142,7 +142,7 @@ sed -i -e "s%ETH_TESTNET_KEY=.*%ETH_TESTNET_KEY=${EPK}%g" $HOME/nwaku-compose/.e
 sed -i -e "s%RLN_RELAY_CRED_PASSWORD=.*%RLN_RELAY_CRED_PASSWORD=${PASS}%g" $HOME/nwaku-compose/.env
 sed -i 's/0\.0\.0\.0:3000:3000/0.0.0.0:3003:3000/g' $HOME/nwaku-compose/docker-compose.yml
 sed -i 's/8000:8000/8004:8000/g' $HOME/nwaku-compose/docker-compose.yml
-sed -i -e "s%NWAKU_IMAGE=.*%NWAKU_IMAGE=wakuorg/nwaku:v0.35.1%g" $HOME/nwaku-compose/.env
+#sed -i -e "s%NWAKU_IMAGE=.*%NWAKU_IMAGE=wakuorg/nwaku:v0.35.1%g" $HOME/nwaku-compose/.env
 sed -i -e "s%STORAGE_SIZE=.*%STORAGE_SIZE=50GB%g" $HOME/nwaku-compose/.env
 grep -q '^POSTGRES_SHM=' "$HOME/nwaku-compose/.env" || echo 'POSTGRES_SHM=4g' >> "$HOME/nwaku-compose/.env"
 sed -i 's/80:80/81:80/g' $HOME/nwaku-compose/docker-compose.yml
