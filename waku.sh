@@ -27,7 +27,7 @@ config() {
   source "$ENV_FILE"
 
   # Проверка необходимых переменных
-  for var in private_key public_key LineaS_RPC PASS KEYSTORE_FILE; do
+  for var in private_key public_key LineaS_RPC PASSWD KEYSTORE_FILE; do
     if [[ -z "${!var:-}" ]]; then
       echo "Змінна $var не встановлена в $ENV_FILE."
       return 1
@@ -52,7 +52,7 @@ config() {
   sed -i -e "s%RLN_RELAY_ETH_CLIENT_ADDRESS=.*%RLN_RELAY_ETH_CLIENT_ADDRESS=${LineaS_RPC}%g"      "$TARGET_ENV"
   sed -i -e "s%ETH_TESTNET_ACCOUNT=.*%ETH_TESTNET_ACCOUNT=${public_key}%g"                      "$TARGET_ENV"
   sed -i -e "s%ETH_TESTNET_KEY=.*%ETH_TESTNET_KEY=${private_key}%g"                             "$TARGET_ENV"
-  sed -i -e "s%RLN_RELAY_CRED_PASSWORD=.*%RLN_RELAY_CRED_PASSWORD=${PASS}%g"                   "$TARGET_ENV"
+  sed -i -e "s%RLN_RELAY_CRED_PASSWORD=.*%RLN_RELAY_CRED_PASSWORD=${PASSWD}%g"                   "$TARGET_ENV"
   sed -i -e "s%STORAGE_SIZE=.*%STORAGE_SIZE=30720MB%g"                                         "$TARGET_ENV"
   grep -q '^POSTGRES_SHM=' "$TARGET_ENV" || echo 'POSTGRES_SHM=2g' >> "$TARGET_ENV"
 
@@ -112,15 +112,19 @@ while true; do
           read -rp "🌐 Linea Sepolia RPC URL: " LineaS_RPC
           echo "LineaS_RPC=\"$LineaS_RPC\"" >> "$ENV_FILE"
         fi
-        if [[ -z "${PASS:-}" ]]; then
-          read -rp "Enter password 🔑: " PASS
-          echo "PASS=\"$PASS\"" >> "$ENV_FILE"
+        if [[ -z "${PASSWD:-}" ]]; then
+          read -rp "Enter password 🔑: " PASSWD
+          echo "PASSWD=\"$PASSWD\"" >> "$ENV_FILE"
         fi
 
-        # Установка KEYSTORE_FILE с дефолтним значенням
-        read -rp "Enter path to keystore.json [${DEFAULT_KEYSTORE_FILE}]: " input
-        KEYSTORE_FILE="${input:-$DEFAULT_KEYSTORE_FILE}"
-        echo "KEYSTORE_FILE=\"$KEYSTORE_FILE\"" >> "$ENV_FILE"
+        # Установка KEYSTORE_FILE с дефолтним значенням (пропускаємо, якщо вже встановлено)
+        if [[ -z "${KEYSTORE_FILE:-}" ]]; then
+          read -rp "Enter path to keystore.json [${DEFAULT_KEYSTORE_FILE}]: " input
+          KEYSTORE_FILE="${input:-$DEFAULT_KEYSTORE_FILE}"
+          echo "KEYSTORE_FILE=\"$KEYSTORE_FILE\"" >> "$ENV_FILE"
+        else
+          echo "Використовується існуючий KEYSTORE_FILE=\"$KEYSTORE_FILE\""
+        fi
 
         break
         ;;
