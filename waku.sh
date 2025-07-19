@@ -49,16 +49,16 @@ config() {
   chmod 600 "$KEYSTORE_DIR/keystore.json"
 
   # Подстановка значений в .env
-  sed -i -e "s%RLN_RELAY_ETH_CLIENT_ADDRESS=.*%RLN_RELAY_ETH_CLIENT_ADDRESS=${LineaS_RPC}%g" "$TARGET_ENV"
-  sed -i -e "s%ETH_TESTNET_ACCOUNT=.*%ETH_TESTNET_ACCOUNT=${public_key}%g"             "$TARGET_ENV"
-  sed -i -e "s%ETH_TESTNET_KEY=.*%ETH_TESTNET_KEY=${private_key}%g"                   "$TARGET_ENV"
-  sed -i -e "s%RLN_RELAY_CRED_PASSWORD=.*%RLN_RELAY_CRED_PASSWORD=${PASS}%g"         "$TARGET_ENV"
-  sed -i -e "s%STORAGE_SIZE=.*%STORAGE_SIZE=30720MB%g"                               "$TARGET_ENV"
+  sed -i -e "s%RLN_RELAY_ETH_CLIENT_ADDRESS=.*%RLN_RELAY_ETH_CLIENT_ADDRESS=${LineaS_RPC}%g"      "$TARGET_ENV"
+  sed -i -e "s%ETH_TESTNET_ACCOUNT=.*%ETH_TESTNET_ACCOUNT=${public_key}%g"                      "$TARGET_ENV"
+  sed -i -e "s%ETH_TESTNET_KEY=.*%ETH_TESTNET_KEY=${private_key}%g"                             "$TARGET_ENV"
+  sed -i -e "s%RLN_RELAY_CRED_PASSWORD=.*%RLN_RELAY_CRED_PASSWORD=${PASS}%g"                   "$TARGET_ENV"
+  sed -i -e "s%STORAGE_SIZE=.*%STORAGE_SIZE=30720MB%g"                                         "$TARGET_ENV"
   grep -q '^POSTGRES_SHM=' "$TARGET_ENV" || echo 'POSTGRES_SHM=2g' >> "$TARGET_ENV"
 
   # Обновление портов в docker-compose.yml
   sed -i 's/0\.0\.0\.0:3000:3000/0.0.0.0:3003:3000/' "$COMPOSE_DIR/docker-compose.yml"
-  sed -i 's/80:80/82:80/'                               "$COMPOSE_DIR/docker-compose.yml"
+  sed -i 's/80:80/82:80/'                         "$COMPOSE_DIR/docker-compose.yml"
 }
 
 while true; do
@@ -117,16 +117,10 @@ while true; do
           echo "PASS=\"$PASS\"" >> "$ENV_FILE"
         fi
 
-        # Установка KEYSTORE_FILE
-        if [[ -z "${KEYSTORE_FILE:-}" ]]; then
-          if [[ -f "$DEFAULT_KEYSTORE_FILE" ]]; then
-            KEYSTORE_FILE="$DEFAULT_KEYSTORE_FILE"
-            echo "KEYSTORE_FILE=\"$KEYSTORE_FILE\"" >> "$ENV_FILE"
-          else
-            read -rp "Enter path to keystore.json (можно загрузить по SFTP в $CONFIG_DIR): " KEYSTORE_FILE
-            echo "KEYSTORE_FILE=\"$KEYSTORE_FILE\"" >> "$ENV_FILE"
-          fi
-        fi
+        # Установка KEYSTORE_FILE с дефолтним значенням
+        read -rp "Enter path to keystore.json [${DEFAULT_KEYSTORE_FILE}]: " input
+        KEYSTORE_FILE="${input:-$DEFAULT_KEYSTORE_FILE}"
+        echo "KEYSTORE_FILE=\"$KEYSTORE_FILE\"" >> "$ENV_FILE"
 
         break
         ;;
