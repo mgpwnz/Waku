@@ -163,7 +163,8 @@ while true; do
         if [[ -d "$COMPOSE_DIR" ]]; then
           read -rp "Wipe all DATA? [y/N] " response
           if [[ "$response" =~ ^[Yy] ]]; then
-            cd "$COMPOSE_DIR" && docker compose down -v
+            # Остановити і видалити контейнери без читання .env
+            docker compose -f "$COMPOSE_DIR/docker-compose.yml" --env-file /dev/null down -v
             rm -rf "$COMPOSE_DIR"
           else
             echo "Canceled"
