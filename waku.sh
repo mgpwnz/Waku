@@ -59,7 +59,7 @@ config() {
   # Обновление портов в docker-compose.yml
   sed -i 's/0\.0\.0\.0:3000:3000/0.0.0.0:3003:3000/' "$COMPOSE_DIR/docker-compose.yml"
   sed -i 's/80:80/82:80/'                         "$COMPOSE_DIR/docker-compose.yml"
-  sed -i 's/0\.0\.0\.0:4000:4000/0.0.0.0:4003:4000/' "$COMPOSE_DIR/docker-compose.yml"
+  sed -i 's/"0\.0\.0\.0:4000:4000"/"0.0.0.0:4003:4000"/' "$COMPOSE_DIR/docker-compose.yml"
 }
 
 while true; do
